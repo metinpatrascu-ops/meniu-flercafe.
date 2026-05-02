@@ -51,7 +51,7 @@
         #top-ui {
             position: fixed; top: 25px; left: 8vw; right: 8vw;
             display: flex; justify-content: space-between; align-items: center; z-index: 1000;
-            display: none; /* Hidden until start */
+            display: none;
         }
 
         #musicStatus {
@@ -61,11 +61,9 @@
             display: flex; align-items: center; gap: 12px;
         }
         .v-bar { width: 3px; background: var(--terracotta); animation: pulse 1.2s infinite ease-in-out; height: 15px; }
-        @keyframes pulse { 0%, 100% { height: 5px; } 50% { height: 15px; } }
+        @keyframes pulse { 0%, 100% { height: 4px; } 50% { height: 15px; } }
 
-        .lang-toggle {
-            display: flex; gap: 10px;
-        }
+        .lang-toggle { display: flex; gap: 10px; }
         .lang-btn {
             background: transparent; border: 1px solid var(--terracotta);
             color: var(--terracotta); padding: 5px 12px; cursor: pointer;
@@ -126,11 +124,10 @@
         .price { color: var(--terracotta); font-weight: 700; text-align: right; min-width: 90px; font-size: 1.1em; }
         .ml { font-size: 0.75em; color: var(--terracotta); text-transform: lowercase; margin-left: 6px; }
 
-        /* --- BACKGROUNDS --- */
-        .bg-coffee { background-image: url('poza2espressor.jpg'); }
-        .bg-museum { background-image: url('poza3muzeu.jpg'); }
-        .bg-scissors { background-image: url('poza3foarfeca.jpg'); }
+        /* Branding Fix */
+        .mare-e { text-transform: lowercase !important; font-family: inherit; }
 
+        /* --- TYPOGRAPHY --- */
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(38px, 7vw, 95px);
@@ -150,8 +147,6 @@
             border-left: 3px solid var(--terracotta);
             padding-left: 20px;
         }
-
-        .mare-fix { text-transform: none !important; display: inline-block; }
 
         .promo-box {
             background: var(--terracotta);
@@ -203,6 +198,11 @@
             width: 0%; transition: width 0.4s;
         }
 
+        /* --- BACKGROUNDS --- */
+        .bg-coffee { background-image: url('poza2espressor.jpg'); }
+        .bg-museum { background-image: url('poza3muzeu.jpg'); }
+        .bg-scissors { background-image: url('poza3foarfeca.jpg'); }
+
         @media (max-width: 1100px) {
             .grid-2 { grid-template-columns: 1fr; }
             .slide { padding: 40px 5%; overflow-y: scroll; justify-content: flex-start; }
@@ -220,8 +220,8 @@
     </div>
     <h2 style="font-family: 'Playfair Display'; color: var(--white); letter-spacing: 10px; text-transform: uppercase;">flērcafē</h2>
     <div style="display: flex; gap: 15px;">
-        <button class="enter-btn" onclick="startExperience('ro')">Română</button>
-        <button class="enter-btn" onclick="startExperience('en')">English</button>
+        <button class="enter-btn" onclick="startExperience('ro')">Descoperă flērcafē</button>
+        <button class="enter-btn" onclick="startExperience('en')">Discover flērcafē</button>
     </div>
 </div>
 
@@ -244,7 +244,7 @@
 <div id="player" style="position: absolute; width: 0; height: 0; pointer-events: none;"></div>
 
 <div id="main-deck">
-    <!-- SLIDES WILL BE RENDERED VIA JS BASED ON DATA TO SUPPORT MULTI-LANG -->
+    <!-- RENDERED BY JS -->
 </div>
 
 <!-- NAVIGATION UI -->
@@ -264,9 +264,9 @@
     const deckData = {
         ro: {
             slides: [
-                { id: 1, type: 'intro', bg: 'bg-coffee', title: 'flērcafē', sub: 'Art, Coffee & Spirits', info: 'București • Muzeul MAR<span>e</span> • Primăverii' },
+                { id: 1, type: 'intro', bg: 'bg-coffee', title: 'flērcafē', sub: 'Art, Coffee & Spirits', info: 'București • Muzeul MAR<span class="mare-e">e</span> • Primăverii' },
                 { id: 2, type: 'story', bg: 'bg-coffee', promo: 'Identitatea flērcafē', title: 'Conceptul Nostru', body: 'Născut din rigoarea cafelei de specialitate și libertatea artei contemporane, flērcafē este mai mult decât o destinație; este o stare de spirit curatoriată.<br><br>Situată în inima cartierului Primăverii, cafeneaua oferă un refugiu senzorial unde precizia fiecărei extracții se împletește cu aromele ancestrale ale Levantului.' },
-                { id: 3, type: 'story', bg: 'bg-museum', promo: 'The Experience', title: 'Inima Muzeului MAR<span>e</span>', body: 'Arhitectura iconică a Muzeului de Artă Recentă servește drept cadrul perfect pentru filozofia noastră.<br><br>Aici, arta nu este doar pe simeze, ci și în ritualul cafelei și în generozitatea preparatelor noastre libaneze.' },
+                { id: 3, type: 'story', bg: 'bg-museum', promo: 'The Experience', title: 'Inima Muzeului MAR<span class="mare-e">e</span>', body: 'Arhitectura iconică a Muzeului de Artă Recentă servește drept cadrul perfect pentru filozofia noastră.<br><br>Aici, arta nu este doar pe simeze, ci și în ritualul cafelei și în generozitatea preparatelor noastre libaneze.' },
                 { id: 4, type: 'menu', bg: 'bg-coffee', title: 'Black Coffee Ritual', grids: [
                     { label: 'Single Origin', items: [
                         { name: 'Espresso', ml: '20ml', desc: 'Ethiopia Single Origin Arabica', price: '18 RON' },
@@ -291,7 +291,7 @@
                 ]},
                 { id: 6, type: 'menu', bg: 'bg-coffee', title: 'Specialties & Cold Brew', grids: [
                     { label: 'Iced & Hot', items: [
-                        { name: 'MAR<span>e</span> Hot Chocolate', ml: '250ml', desc: '30g ciocolată neagră, lapte, sare roz', price: '32 RON' },
+                        { name: 'MAR<span class="mare-e">e</span> Hot Chocolate', ml: '250ml', desc: '30g ciocolată neagră, lapte, sare roz', price: '32 RON' },
                         { name: 'Matcha Latte', ml: '250ml', desc: 'Ceremonial Matcha + lapte', price: '38 RON' },
                         { name: 'Pink Bubbles Matcha', ml: '230ml', desc: 'Matcha + Pink Tonic Botanical', price: '42 RON' }
                     ]},
@@ -308,33 +308,33 @@
                     ]},
                     { label: 'Note', items: [{ name: 'Savoare', desc: 'Armonia perfectă între gelatoul artizanal și espresso-ul intens.', price: '' }]}
                 ]},
-                { id: 8, type: 'intro', bg: 'bg-museum', title: 'Fler Lebanese', promo: 'The Taste of Levant', info: 'Bucătăria noastră este un omagiu adus rădăcinilor Soul Kitchen.' },
+                { id: 8, type: 'story', bg: 'bg-museum', promo: 'Aromele Levantului', title: 'Fler Lebanese', body: 'O incursiune autentică în inima Levantului, unde aromele libaneze sunt pregătite cu măiestrie și pasiune. Fiecare preparat este o invitație la descoperirea tradiției culinare orientale, reinterpretată într-un stil contemporan pentru experiența flērcafē.' },
                 { id: 9, type: 'menu', bg: 'bg-museum', title: 'Cold Mezze', grids: [
                     { label: 'Hummus', items: [
                         { name: 'Hummus Simplu', desc: 'Năut, tahini, lămâie, ulei măsline', price: '35 RON' },
                         { name: 'Hummus Snaubar', desc: 'Cu muguri de pin prăjiți', price: '41 RON' },
                         { name: 'Hummus cu Vită', desc: 'Vită Angus și muguri de pin', price: '47 RON' }
                     ]},
-                    { label: 'Salads & Dips', items: [
+                    { label: 'Salate & Aperitive', items: [
                         { name: 'Tabbouleh', desc: 'Pătrunjel, roșii, bulgur fin, mentă', price: '35 RON' },
                         { name: 'Fattoush', desc: 'Mix salată, rodie, sumac, lipie', price: '38 RON' },
                         { name: 'Baba Ghanuj', desc: 'Vinete coapte, sos rodii, legume', price: '38 RON' }
                     ]}
                 ]},
                 { id: 10, type: 'menu', bg: 'bg-museum', title: 'Hot Mezze & Grill', grids: [
-                    { label: 'Mains', items: [
+                    { label: 'Preparate Calde', items: [
                         { name: 'Falafel', desc: 'Năut, coriandru, sos tarator', price: '38 RON' },
                         { name: 'Mixed Grill', desc: 'Taouk, Kafta, legume la grătar', price: '75 RON' },
                         { name: 'Shish Taouk', desc: 'Pui marinat, sos usturoi, cartofi', price: '60 RON' }
                     ]},
-                    { label: 'Sides & Sweet', items: [
+                    { label: 'Garnituri & Desert', items: [
                         { name: 'Batata Hara', desc: 'Cartofi picanți cu usturoi', price: '24 RON' },
                         { name: 'Angus Shawarma Bowl', desc: 'Vită Angus, orez, hummus', price: '63 RON' },
                         { name: 'Hallawet el Jiben', desc: 'Desert: Mozzarella, griș, fistic', price: '28 RON' }
                     ]}
                 ]},
                 { id: 11, type: 'menu', bg: 'bg-museum', title: 'Wraps & Burgers', grids: [
-                    { label: 'Wraps', items: [
+                    { label: 'Sandwich & Wrap', items: [
                         { name: 'Falafel Wrap', desc: 'Falafel, tarator, murături', price: '32 RON' },
                         { name: 'Kafta Wrap', desc: 'Kafta grill, hummus, mentă', price: '38 RON' },
                         { name: 'Shish Taouk Wrap', desc: 'Pui, sos usturoi, cartofi', price: '36 RON' }
@@ -348,13 +348,13 @@
                 { id: 12, type: 'intro', bg: 'bg-scissors', title: 'Arak Madu', promo: 'Taste of Victory', info: 'Spiritul Levantului într-o singură extracție.' },
                 { id: 13, type: 'menu', bg: 'bg-scissors', title: 'Signature Spirits (Arak)', grids: [
                     { label: 'Founders', items: [
-                        { name: 'Arak Madu', ml: '110ml', desc: '60ml Arak, lemon, miere, apă', price: '48 RON' },
+                        { name: 'Arak Madu', ml: '110ml', desc: '60ml Arak, lămâie, miere, apă', price: '48 RON' },
                         { name: 'Arak Caipirinha', ml: '120ml', desc: '60ml Arak, lime, zahăr brun, apă', price: '45 RON' },
                         { name: 'Lady Arak', ml: '340ml', desc: '50ml Arak, Grenadine, fresh orange', price: '46 RON' }
                     ]},
-                    { label: 'Masterpieces', items: [
+                    { label: 'House Masterpieces', items: [
                         { name: 'Casa Blanca', ml: '155ml', desc: '50ml Arak, ananas, cocos, mentă', price: '49 RON' },
-                        { name: 'Fleur Madu', ml: '115ml', desc: '50ml Arak, mango, lemon, miere', price: '48 RON' },
+                        { name: 'Fleur Madu', ml: '115ml', desc: '50ml Arak, mango, lămâie, miere', price: '48 RON' },
                         { name: 'Velvet Espresso Martini', ml: '135ml', desc: 'Vodka, Espresso, Tia Maria, vanilie', price: '42 RON' }
                     ]}
                 ]},
@@ -368,9 +368,158 @@
                         { name: 'Negroni Sbagliato', ml: '120ml', desc: 'Campari, Cinzano Rosso, Prosecco', price: '42 RON' }
                     ]}
                 ]},
-                { id: 15, type: 'menu', bg: 'bg-scissors', title: 'Modern Classics', grids: [
+                { id: 15, type: 'menu', bg: 'bg-scissors', title: 'Modern Selection', grids: [
                     { label: 'New Age', items: [
-                        { name: 'The Banker', ml: '160ml', desc: 'Aperol, Gin Pink, lemon, sirop', price: '44 RON' },
+                        { name: 'The Banker', ml: '160ml', desc: '50ml Aperol, 60ml Gin Pink, lămâie, sirop', price: '44 RON' },
+                        { name: 'Porn Star Martini', ml: '140ml', desc: 'Vodka, Passoa, passion fruit, Prosecco shot', price: '46 RON' },
+                        { name: 'Cherry Silk', ml: '85ml', desc: 'Whiskey, dry Vermouth, clarified cherry syrup', price: '45 RON' }
+                    ]},
+                    { label: 'Gin Ritual', items: [
+                        { name: 'Gin Tonic Classic', ml: '250ml', price: '40 RON' },
+                        { name: 'Gin Tonic Pink', ml: '250ml', price: '42 RON' },
+                        { name: 'Don Paloma', ml: '160ml', desc: 'Don Julio Blanco, lime, Grapefruit Soda', price: '48 RON' }
+                    ]}
+                ]},
+                { id: 16, type: 'menu', bg: 'bg-scissors', title: 'Traditional Selection', grids: [
+                    { label: 'Classics', items: [
+                        { name: 'Negroni', ml: '105ml', desc: 'Gin, Campari, Cinzano Rosso', price: '42 RON' },
+                        { name: 'Old Fashioned', ml: '100ml', desc: 'Bourbon, sirop, bitters, orange peel', price: '45 RON' },
+                        { name: 'Disaronno Sour', ml: '110ml', price: '40 RON' },
+                        { name: 'Mojito', ml: '250ml', price: '40 RON' }
+                    ]},
+                    { label: 'World Favorites', items: [
+                        { name: 'Margarita', ml: '110ml', price: '42 RON' },
+                        { name: 'Mai Tai', ml: '225ml', price: '45 RON' },
+                        { name: 'Pina Colada', ml: '210ml', price: '42 RON' },
+                        { name: 'Cuba Libre', ml: '250ml', price: '38 RON' },
+                        { name: 'White Russian', ml: '150ml', price: '38 RON' }
+                    ]}
+                ]},
+                { id: 17, type: 'menu', bg: 'bg-scissors', title: 'Wine & Refreshments', grids: [
+                    { label: 'Davino Selection', items: [
+                        { name: 'VAST Alb/Rosé/Red', desc: 'Pahar (150ml)', price: '35-38 RON' },
+                        { name: 'Iacob Selection', desc: 'Bottle (750ml)', price: '? RON' },
+                        { name: 'Cinzano Prosecco', price: '32 RON' }
+                    ]},
+                    { label: 'Răcoritoare', items: [
+                        { name: 'Apă Plată/Min.', desc: '330ml/750ml', price: '16/24 RON' },
+                        { name: 'Gama Coca-Cola', price: '16 RON' },
+                        { name: 'Smoothies', desc: 'Sunrise / Green Detox', price: '35 RON' }
+                    ]}
+                ]},
+                { id: 18, type: 'intro', bg: 'bg-museum', title: 'Experiența MAR<span class="mare-e">e</span>', promo: 'Vă așteptăm', info: 'O intersecție a artei și savoarei în inima Bucureștiului.' }
+            ],
+            ui: { prev: 'Inapoi', next: 'Inainte', music: 'Selecție Chill Coffee' }
+        },
+        en: {
+            slides: [
+                { id: 1, type: 'intro', bg: 'bg-coffee', title: 'flērcafē', sub: 'Art, Coffee & Spirits', info: 'Bucharest • MAR<span class="mare-e">e</span> Museum • Primăverii' },
+                { id: 2, type: 'story', bg: 'bg-coffee', promo: 'flērcafē Identity', title: 'Our Concept', body: 'Born from specialty coffee rigor and contemporary art freedom, flērcafē is more than a destination; it is a curated state of mind.<br><br>Located in Primăverii, the café offers a sensory refuge where coffee precision meets Levantine warmth.' },
+                { id: 3, type: 'story', bg: 'bg-museum', promo: 'The Experience', title: 'Heart of MAR<span class="mare-e">e</span>', body: 'The iconic architecture of the Museum of Recent Art serves as the perfect framework for our philosophy.<br><br>Here, art is not just on the walls, but in every cup and every Lebanese dish.' },
+                { id: 4, type: 'menu', bg: 'bg-coffee', title: 'Black Coffee Ritual', grids: [
+                    { label: 'Single Origin', items: [
+                        { name: 'Espresso', ml: '20ml', desc: 'Ethiopia Single Origin Arabica', price: '18 RON' },
+                        { name: 'Espresso Double', ml: '40ml', desc: 'Double shot Ethiopia', price: '22 RON' },
+                        { name: 'Filter Coffee', ml: '200ml', desc: 'Brazil Single Origin (Moccamaster)', price: '26 RON' }
+                    ]},
+                    { label: 'Extended', items: [
+                        { name: 'Long Black', ml: '90ml', desc: '40ml double shot + 50ml water', price: '22 RON' },
+                        { name: 'Americano', ml: '90ml', desc: '20ml single shot + 70ml water', price: '18 RON' }
+                    ]}
+                ]},
+                { id: 5, type: 'menu', bg: 'bg-coffee', title: 'Milk Beverages Ritual', grids: [
+                    { label: 'The Classics', items: [
+                        { name: 'Cortado', ml: '90ml', desc: '40ml espresso + 50ml milk', price: '24 RON' },
+                        { name: 'Fler Cappuccino', ml: '150ml', desc: '20ml espresso + 130ml foam', price: '28 RON' },
+                        { name: 'Flat White', ml: '150ml', desc: '40ml double shot + 110ml milk', price: '32 RON' }
+                    ]},
+                    { label: 'The Experience', items: [
+                        { name: 'Latte', ml: '250ml', desc: '40ml double shot + 210ml milk', price: '34 RON' },
+                        { name: 'Babyccino', ml: '150ml', desc: 'Foamed milk for kids', price: '20 RON' }
+                    ]}
+                ]},
+                { id: 6, type: 'menu', bg: 'bg-coffee', title: 'Specialties & Cold Brew', grids: [
+                    { label: 'Iced & Hot', items: [
+                        { name: 'MAR<span class="mare-e">e</span> Hot Chocolate', ml: '250ml', desc: 'Dark chocolate, milk, pink salt', price: '32 RON' },
+                        { name: 'Matcha Latte', ml: '250ml', desc: 'Ceremonial Matcha + milk', price: '38 RON' },
+                        { name: 'Pink Bubbles Matcha', ml: '230ml', desc: 'Matcha + Pink Tonic Botanical', price: '42 RON' }
+                    ]},
+                    { label: 'Cold Brew Ritual', items: [
+                        { name: 'Cold Brew Tonic', ml: '250ml', desc: 'Cold brew + Premium tonic', price: '36 RON' },
+                        { name: 'Cold Brew Latte', ml: '250ml', desc: 'Concentrate + creamy milk', price: '32 RON' },
+                        { name: 'Fler Frappé', ml: '300ml', desc: 'Espresso, milk, ice, cream', price: '38 RON' }
+                    ]}
+                ]},
+                { id: 7, type: 'menu', bg: 'bg-coffee', title: 'Affogato Experience', grids: [
+                    { label: 'Contrast', items: [
+                        { name: 'Classic Affogato', desc: 'Vanilla gelato + Ethiopia espresso', price: '38 RON' },
+                        { name: 'Fler Boozy Affogato', desc: 'Gelato + espresso + Disaronno / Baileys', price: '52 RON' }
+                    ]},
+                    { label: 'Note', items: [{ name: 'Flavor', desc: 'Perfect harmony between artisanal gelato and intense espresso.', price: '' }]}
+                ]},
+                { id: 8, type: 'story', bg: 'bg-museum', promo: 'Levantine Flavors', title: 'Fler Lebanese', body: 'An authentic journey to the heart of the Levant, where Lebanese flavors are prepared with mastery and passion. Each dish is an invitation to discover Middle Eastern culinary traditions, reinterpreted in a contemporary style for the flērcafē experience.' },
+                { id: 9, type: 'menu', bg: 'bg-museum', title: 'Cold Mezze', grids: [
+                    { label: 'Hummus', items: [
+                        { name: 'Plain Hummus', desc: 'Chickpeas, tahini, lemon, olive oil', price: '35 RON' },
+                        { name: 'Hummus Snaubar', desc: 'With toasted pine nuts', price: '41 RON' },
+                        { name: 'Hummus with Beef', desc: 'Angus beef and pine nuts', price: '47 RON' }
+                    ]},
+                    { label: 'Salads & Dips', items: [
+                        { name: 'Tabbouleh', desc: 'Parsley, tomato, bulgur, mint', price: '35 RON' },
+                        { name: 'Fattoush', desc: 'Salad mix, pomegranate, sumac', price: '38 RON' },
+                        { name: 'Baba Ghanuj', desc: 'Roasted eggplant, pomegranate, veggies', price: '38 RON' }
+                    ]}
+                ]},
+                { id: 10, type: 'menu', bg: 'bg-museum', title: 'Hot Mezze & Grill', grids: [
+                    { label: 'Hot Dishes', items: [
+                        { name: 'Falafel', desc: 'Chickpeas, coriander, tarator sauce', price: '38 RON' },
+                        { name: 'Mixed Grill', desc: 'Taouk, Kafta, grilled veggies', price: '75 RON' },
+                        { name: 'Shish Taouk', desc: 'Marinated chicken, garlic, fries', price: '60 RON' }
+                    ]},
+                    { label: 'Sides & Dessert', items: [
+                        { name: 'Batata Hara', desc: 'Spicy potatoes with garlic', price: '24 RON' },
+                        { name: 'Angus Shawarma Bowl', desc: 'Angus beef, rice, hummus', price: '63 RON' },
+                        { name: 'Hallawet el Jiben', desc: 'Dessert: Mozzarella, semolina, pistachio', price: '28 RON' }
+                    ]}
+                ]},
+                { id: 11, type: 'menu', bg: 'bg-museum', title: 'Wraps & Burgers', grids: [
+                    { label: 'Wraps', items: [
+                        { name: 'Falafel Wrap', desc: 'Falafel, tarator, pickles', price: '32 RON' },
+                        { name: 'Kafta Wrap', desc: 'Grilled Kafta, hummus, mint', price: '38 RON' },
+                        { name: 'Shish Taouk Wrap', desc: 'Chicken, garlic, fries', price: '36 RON' }
+                    ]},
+                    { label: 'Fler Burgers', items: [
+                        { name: 'Fler Signature Burger', desc: 'Angus beef, Halloumi, hummus', price: '54 RON' },
+                        { name: 'Classic Angus Burger', desc: 'Angus beef, Cheddar, fries', price: '48 RON' },
+                        { name: 'Crispy Chicken Burger', desc: 'Crispy chicken, garlic sauce', price: '45 RON' }
+                    ]}
+                ]},
+                { id: 12, type: 'intro', bg: 'bg-scissors', title: 'Arak Madu', promo: 'Taste of Victory', info: 'Levantine spirit in a single extraction.' },
+                { id: 13, type: 'menu', bg: 'bg-scissors', title: 'Signature Spirits (Arak)', grids: [
+                    { label: 'Founders', items: [
+                        { name: 'Arak Madu', ml: '110ml', desc: '60ml Arak, lemon, honey, water', price: '48 RON' },
+                        { name: 'Arak Caipirinha', ml: '120ml', desc: '60ml Arak, lime, sugar, water', price: '45 RON' },
+                        { name: 'Lady Arak', ml: '340ml', desc: '50ml Arak, Grenadine, fresh orange', price: '46 RON' }
+                    ]},
+                    { label: 'House Masterpieces', items: [
+                        { name: 'Casa Blanca', ml: '155ml', desc: '50ml Arak, pineapple, coconut, mint', price: '49 RON' },
+                        { name: 'Fleur Madu', ml: '115ml', desc: '50ml Arak, mango, lemon, honey', price: '48 RON' },
+                        { name: 'Velvet Espresso Martini', ml: '135ml', desc: 'Vodka, Espresso, Tia Maria, vanilla', price: '42 RON' }
+                    ]}
+                ]},
+                { id: 14, type: 'menu', bg: 'bg-scissors', title: 'The Spritz Ritual', grids: [
+                    { label: 'Classic', items: [
+                        { name: 'Aperol Spritz', ml: '250ml', desc: 'Prosecco, Aperol, water, orange', price: '42 RON' },
+                        { name: 'Hugo Spritz', ml: '250ml', desc: 'Prosecco, elderflower, mint, lime', price: '42 RON' }
+                    ]},
+                    { label: 'Special', items: [
+                        { name: 'Limoncello Spritz', ml: '250ml', desc: 'Prosecco, Limoncello, lemon', price: '42 RON' },
+                        { name: 'Negroni Sbagliato', ml: '120ml', desc: 'Campari, Cinzano Rosso, Prosecco', price: '42 RON' }
+                    ]}
+                ]},
+                { id: 15, type: 'menu', bg: 'bg-scissors', title: 'Modern Selection', grids: [
+                    { label: 'New Age', items: [
+                        { name: 'The Banker', ml: '160ml', desc: 'Aperol, Pink Gin, lemon, syrup', price: '44 RON' },
                         { name: 'Porn Star Martini', ml: '140ml', desc: 'Vodka, passion fruit, Prosecco shot', price: '46 RON' },
                         { name: 'Cherry Silk', ml: '85ml', desc: 'Whiskey, dry Vermouth, cherry', price: '45 RON' }
                     ]},
@@ -391,170 +540,23 @@
                         { name: 'Margarita', ml: '110ml', price: '42 RON' },
                         { name: 'Mai Tai', ml: '225ml', price: '45 RON' },
                         { name: 'Pina Colada', ml: '210ml', price: '42 RON' },
-                        { name: 'Cuba Libre', ml: '250ml', price: '38 RON' }
+                        { name: 'Cuba Libre', ml: '250ml', price: '38 RON' },
+                        { name: 'White Russian', ml: '150ml', price: '38 RON' }
                     ]}
                 ]},
                 { id: 17, type: 'menu', bg: 'bg-scissors', title: 'Wine & Refreshments', grids: [
-                    { label: 'Davino', items: [
-                        { name: 'VAST Alb/Rosé/Red', desc: 'Pahar (150ml)', price: '35-38 RON' },
-                        { name: 'Iacob Selection', desc: 'Bottle (750ml)', price: '? RON' },
-                        { name: 'Cinzano Prosecco', price: '32 RON' }
-                    ]},
-                    { label: 'Refreshments', items: [
-                        { name: 'Apă Plată/Min.', desc: '330ml/750ml', price: '16/24 RON' },
-                        { name: 'Soft Drinks', desc: 'Cola/Fanta/Sprite', price: '16 RON' },
-                        { name: 'Smoothies', desc: 'Sunrise/Green', price: '35 RON' }
-                    ]}
-                ]},
-                { id: 18, type: 'intro', bg: 'bg-museum', title: 'The MAR<span>e</span> Experience', promo: 'Vă așteptăm', info: 'O intersecție a artei și savoarei în inima Bucureștiului.' }
-            ],
-            ui: { prev: 'Inapoi', next: 'Inainte', music: 'Selecție Chill Coffee' }
-        },
-        en: {
-            slides: [
-                { id: 1, type: 'intro', bg: 'bg-coffee', title: 'flērcafē', sub: 'Art, Coffee & Spirits', info: 'Bucharest • MAR<span>e</span> Museum • Primăverii' },
-                { id: 2, type: 'story', bg: 'bg-coffee', promo: 'flērcafē Identity', title: 'Our Concept', body: 'Born from specialty coffee rigor and contemporary art freedom, flērcafē is more than a destination; it is a curated state of mind.<br><br>Located in Primăverii, the café offers a sensory refuge where coffee precision meets Levantine warmth.' },
-                { id: 3, type: 'story', bg: 'bg-museum', promo: 'The Experience', title: 'At the Heart of MAR<span>e</span>', body: 'The iconic architecture of the Museum of Recent Art serves as the perfect framework for our philosophy.<br><br>Here, art is not just on the walls, but in every cup and every Lebanese dish.' },
-                { id: 4, type: 'menu', bg: 'bg-coffee', title: 'Black Coffee Ritual', grids: [
-                    { label: 'Single Origin', items: [
-                        { name: 'Espresso', ml: '20ml', desc: 'Ethiopia Single Origin Arabica', price: '18 RON' },
-                        { name: 'Espresso Double', ml: '40ml', desc: 'Double shot Ethiopia', price: '22 RON' },
-                        { name: 'Filter Coffee', ml: '200ml', desc: 'Brazil Single Origin (Moccamaster)', price: '26 RON' }
-                    ]},
-                    { label: 'Extended', items: [
-                        { name: 'Long Black', ml: '90ml', desc: '40ml double shot + 50ml water', price: '22 RON' },
-                        { name: 'Americano', ml: '90ml', desc: '20ml single shot + 70ml water', price: '18 RON' }
-                    ]}
-                ]},
-                { id: 5, type: 'menu', bg: 'bg-coffee', title: 'Milk Beverages Ritual', grids: [
-                    { label: 'The Classics', items: [
-                        { name: 'Cortado', ml: '90ml', desc: '40ml espresso + 50ml milk', price: '24 RON' },
-                        { name: 'Fler Cappuccino', ml: '150ml', desc: '20ml espresso + 130ml foam', price: '28 RON' },
-                        { name: 'Flat White', ml: '150ml', desc: '40ml double shot + 110ml milk', price: '32 RON' }
-                    ]},
-                    { label: 'The Experience', items: [
-                        { name: 'Latte', ml: '250ml', desc: '40ml double shot + 210ml milk', price: '34 RON' },
-                        { name: 'Babyccino', ml: '150ml', desc: 'Delicate foamed milk', price: '20 RON' }
-                    ]}
-                ]},
-                { id: 6, type: 'menu', bg: 'bg-coffee', title: 'Specialties & Cold Brew', grids: [
-                    { label: 'Iced & Hot', items: [
-                        { name: 'MAR<span>e</span> Hot Chocolate', ml: '250ml', desc: 'Dark chocolate, milk, pink salt', price: '32 RON' },
-                        { name: 'Matcha Latte', ml: '250ml', desc: 'Ceremonial Matcha + milk', price: '38 RON' },
-                        { name: 'Pink Bubbles Matcha', ml: '230ml', desc: 'Matcha + Pink Tonic Botanical', price: '42 RON' }
-                    ]},
-                    { label: 'Cold Brew Ritual', items: [
-                        { name: 'Cold Brew Tonic', ml: '250ml', desc: 'Cold brew + Premium tonic', price: '36 RON' },
-                        { name: 'Cold Brew Latte', ml: '250ml', desc: 'Concentrate + creamy milk', price: '32 RON' },
-                        { name: 'Fler Frappé', ml: '300ml', desc: 'Espresso, milk, ice, cream', price: '38 RON' }
-                    ]}
-                ]},
-                { id: 7, type: 'menu', bg: 'bg-coffee', title: 'Affogato Experience', grids: [
-                    { label: 'Contrast', items: [
-                        { name: 'Classic Affogato', desc: 'Vanilla gelato + Ethiopia espresso', price: '38 RON' },
-                        { name: 'Fler Boozy Affogato', desc: 'Gelato + espresso + Disaronno / Baileys', price: '52 RON' }
-                    ]},
-                    { label: 'Notes', items: [{ name: 'Flavor', desc: 'Perfect harmony between artisanal gelato and intense espresso.', price: '' }]}
-                ]},
-                { id: 8, type: 'intro', bg: 'bg-museum', title: 'Fler Lebanese', promo: 'The Taste of Levant', info: 'Our cuisine is a tribute to Soul Kitchen roots.' },
-                { id: 9, type: 'menu', bg: 'bg-museum', title: 'Cold Mezze', grids: [
-                    { label: 'Hummus Selection', items: [
-                        { name: 'Plain Hummus', desc: 'Chickpeas, tahini, lemon, olive oil', price: '35 RON' },
-                        { name: 'Hummus Snaubar', desc: 'With toasted pine nuts', price: '41 RON' },
-                        { name: 'Hummus with Beef', desc: 'Angus beef and pine nuts', price: '47 RON' }
-                    ]},
-                    { label: 'Salads & Dips', items: [
-                        { name: 'Tabbouleh', desc: 'Parsley, tomato, bulgur, mint', price: '35 RON' },
-                        { name: 'Fattoush', desc: 'Salad mix, pomegranate, sumac', price: '38 RON' },
-                        { name: 'Baba Ghanuj', desc: 'Roasted eggplant, pomegranate sauce', price: '38 RON' }
-                    ]}
-                ]},
-                { id: 10, type: 'menu', bg: 'bg-museum', title: 'Hot Mezze & Grill', grids: [
-                    { label: 'Mains', items: [
-                        { name: 'Falafel', desc: 'Chickpeas, coriander, tarator sauce', price: '38 RON' },
-                        { name: 'Mixed Grill', desc: 'Taouk, Kafta, grilled veggies', price: '75 RON' },
-                        { name: 'Shish Taouk', desc: 'Marinated chicken, garlic sauce', price: '60 RON' }
-                    ]},
-                    { label: 'Sides & Sweet', items: [
-                        { name: 'Batata Hara', desc: 'Spicy potatoes with garlic', price: '24 RON' },
-                        { name: 'Angus Shawarma Bowl', desc: 'Angus beef, rice, hummus', price: '63 RON' },
-                        { name: 'Hallawet el Jiben', desc: 'Dessert: Mozzarella, semolina, pistachio', price: '28 RON' }
-                    ]}
-                ]},
-                { id: 11, type: 'menu', bg: 'bg-museum', title: 'Wraps & Burgers', grids: [
-                    { label: 'Wraps', items: [
-                        { name: 'Falafel Wrap', desc: 'Falafel, tarator, pickles', price: '32 RON' },
-                        { name: 'Kafta Wrap', desc: 'Grilled Kafta, hummus, mint', price: '38 RON' },
-                        { name: 'Shish Taouk Wrap', desc: 'Chicken, garlic sauce, fries', price: '36 RON' }
-                    ]},
-                    { label: 'Fler Burgers', items: [
-                        { name: 'Fler Signature Burger', desc: 'Angus beef, Halloumi, hummus', price: '54 RON' },
-                        { name: 'Classic Angus Burger', desc: 'Angus beef, Cheddar, fries', price: '48 RON' },
-                        { name: 'Crispy Chicken Burger', desc: 'Crispy chicken, garlic sauce', price: '45 RON' }
-                    ]}
-                ]},
-                { id: 12, type: 'intro', bg: 'bg-scissors', title: 'Arak Madu', promo: 'Taste of Victory', info: 'Levantine spirit in a single extraction.' },
-                { id: 13, type: 'menu', bg: 'bg-scissors', title: 'Signature Spirits (Arak)', grids: [
-                    { label: 'Founders', items: [
-                        { name: 'Arak Madu', ml: '110ml', desc: '60ml Arak, lemon, honey, water', price: '48 RON' },
-                        { name: 'Arak Caipirinha', ml: '120ml', desc: '60ml Arak, lime, sugar, water', price: '45 RON' },
-                        { name: 'Lady Arak', ml: '340ml', desc: '50ml Arak, Grenadine, fresh orange', price: '46 RON' }
-                    ]},
-                    { label: 'Masterpieces', items: [
-                        { name: 'Casa Blanca', ml: '155ml', desc: '50ml Arak, pineapple, coconut, mint', price: '49 RON' },
-                        { name: 'Fleur Madu', ml: '115ml', desc: '50ml Arak, mango, lemon, honey', price: '48 RON' },
-                        { name: 'Velvet Espresso Martini', ml: '135ml', desc: 'Vodka, Espresso, Tia Maria, vanilla', price: '42 RON' }
-                    ]}
-                ]},
-                { id: 14, type: 'menu', bg: 'bg-scissors', title: 'The Spritz Ritual', grids: [
-                    { label: 'Classic', items: [
-                        { name: 'Aperol Spritz', ml: '250ml', desc: 'Prosecco, Aperol, water, orange', price: '42 RON' },
-                        { name: 'Hugo Spritz', ml: '250ml', desc: 'Prosecco, elderflower, mint, lime', price: '42 RON' }
-                    ]},
-                    { label: 'Special', items: [
-                        { name: 'Limoncello Spritz', ml: '250ml', desc: 'Prosecco, Limoncello, lemon', price: '42 RON' },
-                        { name: 'Negroni Sbagliato', ml: '120ml', desc: 'Campari, Cinzano Rosso, Prosecco', price: '42 RON' }
-                    ]}
-                ]},
-                { id: 15, type: 'menu', bg: 'bg-scissors', title: 'Modern Classics', grids: [
-                    { label: 'New Age', items: [
-                        { name: 'The Banker', ml: '160ml', desc: 'Aperol, Gin Pink, lemon, syrup', price: '44 RON' },
-                        { name: 'Porn Star Martini', ml: '140ml', desc: 'Vodka, passion fruit, Prosecco shot', price: '46 RON' },
-                        { name: 'Cherry Silk', ml: '85ml', desc: 'Whiskey, dry Vermouth, cherry', price: '45 RON' }
-                    ]},
-                    { label: 'Gins', items: [
-                        { name: 'Gin Tonic Classic', ml: '250ml', price: '40 RON' },
-                        { name: 'Gin Tonic Pink', ml: '250ml', price: '42 RON' },
-                        { name: 'Don Paloma', ml: '160ml', desc: 'Tequila, lime, Grapefruit Soda', price: '48 RON' }
-                    ]}
-                ]},
-                { id: 16, type: 'menu', bg: 'bg-scissors', title: 'Traditional Selection', grids: [
-                    { label: 'Classics', items: [
-                        { name: 'Negroni', ml: '105ml', price: '42 RON' },
-                        { name: 'Old Fashioned', ml: '100ml', price: '45 RON' },
-                        { name: 'Disaronno Sour', ml: '110ml', price: '40 RON' },
-                        { name: 'Mojito', ml: '250ml', price: '40 RON' }
-                    ]},
-                    { label: 'Favorites', items: [
-                        { name: 'Margarita', ml: '110ml', price: '42 RON' },
-                        { name: 'Mai Tai', ml: '225ml', price: '45 RON' },
-                        { name: 'Pina Colada', ml: '210ml', price: '42 RON' },
-                        { name: 'Cuba Libre', ml: '250ml', price: '38 RON' }
-                    ]}
-                ]},
-                { id: 17, type: 'menu', bg: 'bg-scissors', title: 'Wine & Refreshments', grids: [
-                    { label: 'Davino', items: [
+                    { label: 'Davino Selection', items: [
                         { name: 'VAST White/Rosé/Red', desc: 'Glass (150ml)', price: '35-38 RON' },
                         { name: 'Iacob Selection', desc: 'Bottle (750ml)', price: '? RON' },
                         { name: 'Cinzano Prosecco', price: '32 RON' }
                     ]},
-                    { label: 'Refreshments', items: [
+                    { label: 'Soft Drinks', items: [
                         { name: 'Water Still/Min.', desc: '330ml/750ml', price: '16/24 RON' },
-                        { name: 'Soft Drinks', desc: 'Cola/Fanta/Sprite', price: '16 RON' },
-                        { name: 'Smoothies', desc: 'Sunrise/Green', price: '35 RON' }
+                        { name: 'Coca-Cola Range', price: '16 RON' },
+                        { name: 'Smoothies', desc: 'Sunrise / Green Detox', price: '35 RON' }
                     ]}
                 ]},
-                { id: 18, type: 'intro', bg: 'bg-museum', title: 'The MAR<span>e</span> Experience', promo: 'Welcome', info: 'Where Art Meets Aroma in the heart of Bucharest.' }
+                { id: 18, type: 'intro', bg: 'bg-museum', title: 'The MAR<span class="mare-e">e</span> Experience', promo: 'Welcome', info: 'Where Art Meets Aroma in the heart of Bucharest.' }
             ],
             ui: { prev: 'Back', next: 'Next', music: 'Chill Coffee Selection' }
         }
@@ -623,13 +625,12 @@
             deck.appendChild(div);
         });
         
-        // Update UI Text
+        // Update UI
         document.getElementById('ui-prev').innerText = deckData[lang].ui.prev;
         document.getElementById('ui-next').innerText = deckData[lang].ui.next;
         document.getElementById('ui-music-tag').innerText = deckData[lang].ui.music;
     }
 
-    // --- LOGIC ---
     function setLang(l) {
         lang = l;
         document.getElementById('btn-ro').classList.toggle('active', l === 'ro');
@@ -640,7 +641,7 @@
     function onYouTubeIframeAPIReady() {
         ytPlayer = new YT.Player('player', {
             height: '0', width: '0',
-            videoId: 'L5as_Wun-R0', // Reliable Coffee Shop Jazz Loop
+            videoId: 'L5as_Wun-R0', // Jazz Coffee Loop
             playerVars: { 'autoplay': 0, 'controls': 0, 'loop': 1, 'playlist': 'L5as_Wun-R0' }
         });
     }
